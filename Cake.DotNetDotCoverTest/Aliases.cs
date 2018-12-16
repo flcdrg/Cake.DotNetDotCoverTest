@@ -128,7 +128,7 @@ namespace Cake.DotNetDotCoverTest
                 settings = new DotNetCoreTestSettings();
             }
 
-            var tester = new DotNetCoreDotCoverTester(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools);
+            var tester = new DotNetCoreDotCoverTestTester(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools);
             tester.Test(project, settings, new DotNetCoreDotCoverTestSettings());
         }
     }

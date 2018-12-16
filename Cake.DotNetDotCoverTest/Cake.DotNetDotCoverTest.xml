@@ -6,101 +6,126 @@
     <members>
         <member name="T:Cake.DotNetDotCoverTest.Aliases">
             <summary>
+            <para>Contains functionality related to <see href="https://github.com/dotnet/cli">.NET Core CLI</see>.</para>
+            <para>
+            In order to use the commands for this alias, the .Net Core CLI tools will need to be installed on the machine where
+            the Cake script is being executed.  See this <see href="https://www.microsoft.com/net/core">page</see> for information
+            on how to install.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Cake.DotNetDotCoverTest.Aliases.DotNetCoreDotCoverTest(Cake.Core.ICakeContext)">
+            <summary>
+            Test project.
+            </summary>
+            <param name="context">The context.</param>
+            <example>
+            <code>
+                DotNetCoreDotCoverTest();
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.DotNetDotCoverTest.Aliases.DotNetCoreDotCoverTest(Cake.Core.ICakeContext,System.String)">
+            <summary>
+            Test project with path.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="project">The project path.</param>
+            <example>
+            <para>Specify the path to the .csproj file in the test project</para>
+            <code>
+                DotNetCoreDotCoverTest("./test/Project.Tests/Project.Tests.csproj");
+            </code>
+            <para>You could also specify a task that runs multiple test projects.</para>
+            <para>Cake task:</para>
+            <code>
+            Task("Test")
+                .Does(() =>
+            {
+                var projectFiles = GetFiles("./test/**/*.csproj");
+                foreach(var file in projectFiles)
+                {
+                    DotNetCoreDotCoverTest(file.FullPath);
+                }
+            });
+            </code>
+            <para>If your test project is using project.json, the project parameter should just be the directory path.</para>
+            <code>
+                DotNetCoreDotCoverTest("./test/Project.Tests/");
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.DotNetDotCoverTest.Aliases.DotNetCoreDotCoverTest(Cake.Core.ICakeContext,System.String,Cake.Common.Tools.DotNetCore.Test.DotNetCoreTestSettings)">
+             <summary>
+             Test project with settings.
+             </summary>
+             <param name="context">The context.</param>
+             <param name="project">The project path.</param>
+             <param name="settings">The settings.</param>
+             <example>
+             <code>
+                 var settings = new DotNetCoreDotCoverTestSettings
+                 {
+                     Configuration = "Release"
+                 };
             
-            </summary>
-        </member>
-        <member name="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester">
-            <summary>
+                 DotNetCoreDotCoverTest("./test/Project.Tests/Project.Tests.csproj", settings);
+             </code>
+             <para>You could also specify a task that runs multiple test projects.</para>
+             <para>Cake task:</para>
+             <code>
+             Task("Test")
+                 .Does(() =>
+             {
+                 var settings = new DotNetCoreDotCoverTestSettings
+                 {
+                     Configuration = "Release"
+                 };
             
-            </summary>
-        </member>
-        <member name="M:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.ICakeEnvironment,Cake.Core.IO.IProcessRunner,Cake.Core.Tooling.IToolLocator)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester" /> class.
-            </summary>
-            <param name="fileSystem">The file system.</param>
-            <param name="environment">The environment.</param>
-            <param name="processRunner">The process runner.</param>
-            <param name="tools">The tool locator.</param>
-        </member>
-        <member name="M:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester.Test(System.String,Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings)">
-            <summary>
-            Tests the project using the specified path with arguments and settings.
-            </summary>
-            <param name="project">The target project path.</param>
-            <param name="settings">The settings.</param>
+                 var projectFiles = GetFiles("./test/**/*.csproj");
+                 foreach(var file in projectFiles)
+                 {
+                     DotNetCoreDotCoverTest(file.FullPath, settings);
+                 }
+             });
+             </code>
+             <para>If your test project is using project.json, the project parameter should just be the directory path.</para>
+             <code>
+                 var settings = new DotNetCoreDotCoverTestSettings
+                 {
+                     Configuration = "Release"
+                 };
+            
+                 DotNetCoreDotCoverTest("./test/Project.Tests/", settings);
+             </code>
+             </example>
         </member>
         <member name="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Settings">
+        <member name="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestTester">
             <summary>
-            Gets or sets the settings file to use when running tests.
+            .NET Core project tester with dotCover
             </summary>
         </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Filter">
+        <member name="M:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestTester.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.ICakeEnvironment,Cake.Core.IO.IProcessRunner,Cake.Core.Tooling.IToolLocator)">
             <summary>
-            Gets or sets the filter expression to filter out tests in the current project.
+            Initializes a new instance of the <see cref="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestTester" /> class.
             </summary>
-            <remarks>
-            For more information on filtering support, see https://aka.ms/vstest-filtering
-            </remarks>
+            <param name="fileSystem">The file system.</param>
+            <param name="environment">The environment.</param>
+            <param name="processRunner">The process runner.</param>
+            <param name="tools">The tool locator.</param>
         </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.TestAdapterPath">
+        <member name="M:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestTester.Test(System.String,Cake.Common.Tools.DotNetCore.Test.DotNetCoreTestSettings,Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings)">
             <summary>
-            Gets or sets the path to use for the custom test adapter in the test run.
+            Tests the project using the specified path with arguments and settings.
             </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Logger">
-            <summary>
-            Gets or sets a logger for test results
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.OutputDirectory">
-            <summary>
-            Gets or sets the output directory.
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Configuration">
-            <summary>
-            Gets or sets the configuration under which to build.
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Framework">
-            <summary>
-            Gets or sets specific framework to compile.
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.NoBuild">
-            <summary>
-            Gets or sets a value indicating whether to not build the project before testing.
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.NoRestore">
-            <summary>
-            Gets or sets a value indicating whether to not do implicit NuGet package restore.
-            This makes build faster, but requires restore to be done before build is executed.
-            </summary>
-            <remarks>
-            Requires .NET Core 2.x or newer.
-            </remarks>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.DiagnosticFile">
-            <summary>
-            Gets or sets a file to write diagnostic messages to.
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.ResultsDirectory">
-            <summary>
-            Gets or sets the results directory. This setting is only available from 2.0.0 upward.
-            </summary>
-        </member>
-        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.VSTestReportPath">
-            <summary>
-            Gets or sets the file path to write VSTest reports to.
-            </summary>
+            <param name="project">The target project path.</param>
+            <param name="settings">The settings.</param>
+            <param name="dotCoverSettings"></param>
         </member>
     </members>
 </doc>

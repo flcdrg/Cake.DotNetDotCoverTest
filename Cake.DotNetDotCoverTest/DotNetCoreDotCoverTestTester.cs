@@ -10,18 +10,18 @@ namespace Cake.DotNetDotCoverTest
     /// <summary>
     /// .NET Core project tester with dotCover
     /// </summary>
-    public sealed class DotNetCoreDotCoverTester : DotNetCoreTool<DotNetCoreTestSettings>
+    public sealed class DotNetCoreDotCoverTestTester : DotNetCoreTool<DotNetCoreTestSettings>
     {
         private readonly ICakeEnvironment _environment;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DotNetCoreDotCoverTester" /> class.
+        /// Initializes a new instance of the <see cref="DotNetCoreDotCoverTestTester" /> class.
         /// </summary>
         /// <param name="fileSystem">The file system.</param>
         /// <param name="environment">The environment.</param>
         /// <param name="processRunner">The process runner.</param>
         /// <param name="tools">The tool locator.</param>
-        public DotNetCoreDotCoverTester(
+        public DotNetCoreDotCoverTestTester(
             IFileSystem fileSystem,
             ICakeEnvironment environment,
             IProcessRunner processRunner,
