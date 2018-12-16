@@ -8,7 +8,7 @@ using System;
 namespace Cake.DotNetDotCoverTest
 {
     /// <summary>
-    /// 
+    /// .NET Core project tester with dotCover
     /// </summary>
     public sealed class DotNetCoreDotCoverTester : DotNetCoreTool<DotNetCoreTestSettings>
     {
@@ -25,7 +25,7 @@ namespace Cake.DotNetDotCoverTest
             IFileSystem fileSystem,
             ICakeEnvironment environment,
             IProcessRunner processRunner,
-            Cake.Core.Tooling.IToolLocator tools) : base(fileSystem, environment, processRunner, tools)
+            Core.Tooling.IToolLocator tools) : base(fileSystem, environment, processRunner, tools)
         {
             _environment = environment;
         }
@@ -35,17 +35,23 @@ namespace Cake.DotNetDotCoverTest
         /// </summary>
         /// <param name="project">The target project path.</param>
         /// <param name="settings">The settings.</param>
-        public void Test(string project, DotNetCoreTestSettings settings)
+        /// <param name="dotCoverSettings"></param>
+        public void Test(string project, DotNetCoreTestSettings settings, DotNetCoreDotCoverTestSettings dotCoverSettings)
         {
             if (settings == null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            RunCommand(settings, GetArguments(project, settings));
+            if (dotCoverSettings == null)
+            {
+                throw new ArgumentNullException(nameof(dotCoverSettings));
+            }
+
+            RunCommand(settings, GetArguments(project, settings, dotCoverSettings));
         }
 
-        private ProcessArgumentBuilder GetArguments(string project, DotNetCoreTestSettings settings)
+        private ProcessArgumentBuilder GetArguments(string project, DotNetCoreTestSettings settings, DotNetCoreDotCoverTestSettings dotCoverSettings)
         {
             var builder = CreateArgumentBuilder(settings);
 

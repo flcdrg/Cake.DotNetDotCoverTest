@@ -1,4 +1,5 @@
-﻿using Cake.Core;
+﻿using Cake.Common.Tools.DotNetCore.Test;
+using Cake.Core;
 using Cake.Core.Annotations;
 
 using System;
@@ -115,7 +116,7 @@ namespace Cake.DotNetDotCoverTest
         [CakeMethodAlias]
         [CakeAliasCategory("Test")]
         [CakeNamespaceImport("Cake.Common.Tools.DotNetCore.Test")]
-        public static void DotNetCoreDotCoverTest(this ICakeContext context, string project, DotNetCoreDotCoverTestSettings settings)
+        public static void DotNetCoreDotCoverTest(this ICakeContext context, string project, DotNetCoreTestSettings settings)
         {
             if (context == null)
             {
@@ -124,11 +125,11 @@ namespace Cake.DotNetDotCoverTest
 
             if (settings == null)
             {
-                settings = new DotNetCoreDotCoverTestSettings();
+                settings = new DotNetCoreTestSettings();
             }
 
             var tester = new DotNetCoreDotCoverTester(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools);
-            tester.Test(project, settings);
+            tester.Test(project, settings, new DotNetCoreDotCoverTestSettings());
         }
     }
 }
