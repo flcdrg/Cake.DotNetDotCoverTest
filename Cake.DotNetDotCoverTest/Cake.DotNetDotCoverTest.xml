@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cake.DotNetDotCoverTest</name>
+    </assembly>
+    <members>
+        <member name="T:Cake.DotNetDotCoverTest.Aliases">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.ICakeEnvironment,Cake.Core.IO.IProcessRunner,Cake.Core.Tooling.IToolLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester" /> class.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="environment">The environment.</param>
+            <param name="processRunner">The process runner.</param>
+            <param name="tools">The tool locator.</param>
+        </member>
+        <member name="M:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTester.Test(System.String,Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings)">
+            <summary>
+            Tests the project using the specified path with arguments and settings.
+            </summary>
+            <param name="project">The target project path.</param>
+            <param name="settings">The settings.</param>
+        </member>
+        <member name="T:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Settings">
+            <summary>
+            Gets or sets the settings file to use when running tests.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Filter">
+            <summary>
+            Gets or sets the filter expression to filter out tests in the current project.
+            </summary>
+            <remarks>
+            For more information on filtering support, see https://aka.ms/vstest-filtering
+            </remarks>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.TestAdapterPath">
+            <summary>
+            Gets or sets the path to use for the custom test adapter in the test run.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Logger">
+            <summary>
+            Gets or sets a logger for test results
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.OutputDirectory">
+            <summary>
+            Gets or sets the output directory.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Configuration">
+            <summary>
+            Gets or sets the configuration under which to build.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.Framework">
+            <summary>
+            Gets or sets specific framework to compile.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.NoBuild">
+            <summary>
+            Gets or sets a value indicating whether to not build the project before testing.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.NoRestore">
+            <summary>
+            Gets or sets a value indicating whether to not do implicit NuGet package restore.
+            This makes build faster, but requires restore to be done before build is executed.
+            </summary>
+            <remarks>
+            Requires .NET Core 2.x or newer.
+            </remarks>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.DiagnosticFile">
+            <summary>
+            Gets or sets a file to write diagnostic messages to.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.ResultsDirectory">
+            <summary>
+            Gets or sets the results directory. This setting is only available from 2.0.0 upward.
+            </summary>
+        </member>
+        <member name="P:Cake.DotNetDotCoverTest.DotNetCoreDotCoverTestSettings.VSTestReportPath">
+            <summary>
+            Gets or sets the file path to write VSTest reports to.
+            </summary>
+        </member>
+    </members>
+</doc>
